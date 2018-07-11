@@ -7,7 +7,7 @@ const app = express();
 
 var data = [];
 //'../client' == __dirname
-app.use(express.static(path.join(__dirname, 'client'))); //set static file path
+app.use(express.static(__dirname +'/client')); //set static file path
 
 //parse the data, chunk it up for you and append a body element to request.
 app.use(bodyParser.json());

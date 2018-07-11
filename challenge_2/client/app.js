@@ -20,6 +20,7 @@ var app = {
 			success: function(data){
 				console.log(data)
 				app.renderData(data);
+
 			},
 			error: function(error){
 				console.error("something wrong with GET req")
@@ -32,9 +33,9 @@ var app = {
 		$.ajax({
 			url: app.server, //how do you route get request to different url?
 			type: "POST",
-			dataType:'json',
+			dataType:'json',//what you're expecting
 			data: JSON.stringify(message), //need to send things in strings
-			contentType: 'application/json',
+			contentType: 'application/json', //what you're sending
 			success: function(data) {
 				app.fetch()
 			},
@@ -54,18 +55,32 @@ var app = {
 	},
 
 	renderData: function (data) {
-		var $csv = $("#csv");
-
-		$csv.append('<table>')
-		$csv.append(`<tr></tr>`)
+		$('#table').empty();
+		var $table = $("#table");
+		$table.append('<table id="table2">')
+		$table.append(`<tr></tr>`)
 		for (var i = 0; i < data.length; i++) {
-			 $csv.append("<tr>")
+			 $table.append("<tr>")
 			for (var x = 0; x < data[i].length; x ++){
-				$csv.append(`<td>${data[i][x]}</td>`)
+				$table.append(`<td>${data[i][x]}</td>`)
 			}
-			$csv.append("</tr>");
+			$table.append("</tr>");
 		}
+		$table.append('</table>')
 
+
+		$('#csv').empty()
+		var $csv = $("#csv");
+		$csv.append("<b id='csvName'>CSV</b>")
+		var bigStr = "";
+		for (var i = 0; i <data.length; i++) {
+			var innerStr = data[i].join(',');
+			console.log(innerStr)
+			bigStr = bigStr + innerStr + "\n";
+		} 	
+		$csv.append(`<div>${bigStr}</div>`);
+
+		app.$textData.val("");
 	}
 
 };

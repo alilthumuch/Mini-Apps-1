@@ -1,0 +1,33 @@
+body {
+	background-color: powderblue;
+}
+
+h1 {
+	background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 60px;
+  line-height: 60px;
+}
+
+textarea {
+	background-image: url('https://www.skinit.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/h/e/helkat90.jpg');
+	width: 50%;
+	height: 50%;
+}
+
+#tableName {
+	color: pink;
+}
+
+#csvName {
+	color: pink;
+}
+
+#table {
+	color: white;
+}
+
+#csv {
+	color: white;
+}
