@@ -23,7 +23,6 @@ var app = {
 			},
 			error: function(error){
 				console.error("something wrong with GET req")
-				// app.RenderData(data);
 			},
 		});
 	},
@@ -55,14 +54,22 @@ var app = {
 	},
 
 	renderData: function (data) {
-		var dataArr = [];
-		
+		var $csv = $("#csv");
+
+		$csv.append('<table>')
+		$csv.append(`<tr></tr>`)
+		for (var i = 0; i < data.length; i++) {
+			 $csv.append("<tr>")
+			for (var x = 0; x < data[i].length; x ++){
+				$csv.append(`<td>${data[i][x]}</td>`)
+			}
+			$csv.append("</tr>");
+		}
 
 	}
 
 };
 
-//app.init();
 
 
 
