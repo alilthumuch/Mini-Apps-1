@@ -37,8 +37,9 @@ class App extends React.Component {
 	}
 
 	
-	postRequest(info) {
-		axios.post('/', grocery)
+	postRequest() {
+		console.log("WHEE", this.state, "KONYYY")
+		axios.post('/', this.state)
 		.then(results =>  console.log("Post"))
 		.catch(err => console.log('err posting', err));
 	}
@@ -72,7 +73,7 @@ class App extends React.Component {
 			)
 		} else if (this.state.currentPage ===4) {
 			return (
-				<FinalPage />
+				<FinalPage onSubmit = {this.postRequest.bind(this)}/>
 			)
 		}
 	}
@@ -84,10 +85,10 @@ var Login = (props) => {
 			<form onSubmit = {props.onSubmit}>
 			  Name: <br/>
 			  <input type="text" id="name" onChange = {props.onChange}/><br/>
-			  Email:<br/>
-			  <input type="text" onChange = {props.onChange}/>
-			  Password:<br/>
-			  <input type="text" onChange = {props.onChange}/>
+			  Email: <br/>
+			  <input type="text" id="email" onChange = {props.onChange}/><br/>
+			  Password: <br/>
+			  <input type="text" id="password" onChange = {props.onChange}/><br/>
 			   <input value = "next" type= "submit"/>
 			</form>
 			
@@ -101,15 +102,13 @@ var Address = (props) => {
 		<div>
 			<form onSubmit = {props.onSubmit}>
 			  Address1: <br/>
-			  <input type="text" /><br/>
+			  <input type="text" id="address1" onChange = {props.onChange}/><br/>
 			  Address2: <br/>
-			  <input type="text"/>
+			  <input type="text" id="address2" onChange = {props.onChange}/><br/>
 			  state:<br/>
-			  <input type="text"/>
+			  <input type="text" id="state" onChange = {props.onChange}/><br/>
 			  zip:<br/>
-			  <input type="text"/>
-			  userID:<br/>
-			  <input type="text"/>
+			  <input type="text" id="zip" onChange = {props.onChange}/><br/>
 			  <input value = "next" type= "submit"/>
 			</form>
 			 
@@ -123,13 +122,13 @@ var Credit = (props) => {
 		<div>
 			<form onSubmit = {props.onSubmit}>
 			  cardNumber: <br/>
-			  <input type="text"/><br/>
+			  <input type="text" id="cardNumber" onChange = {props.onChange}/><br/>
 			  expiryDate: <br/>
-			  <input type="text"/>
+			  <input type="text" id="expiryDate" onChange = {props.onChange}/><br/>
 			  cvv:<br/>
-			  <input type="text"/>
+			  <input type="text" id="cvv" onChange = {props.onChange}/><br/>
 			  zip:<br/>
-			  <input type="text"/>
+			  <input type="text" id="billingZip" onChange = {props.onChange}/><br/>
 			  <input value = "next" type= "submit"/>
 			</form>
 			
@@ -140,7 +139,10 @@ var Credit = (props) => {
 var FinalPage = (props) => {
 	return (
 		<div>
-		<h1>purchase donee</h1>
+		<h1>Purchase Done</h1>
+		
+
+		 <input value = "next" type= "submit" onClick = {props.onSubmit}/>
 		</div>
 	)
 }
