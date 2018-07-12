@@ -5,11 +5,13 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon & babel client / --watch --out-dir public --presets=env,react --source-maps inline"
+    "start": "nodemon server.js",
+    "watch": "babel client --watch --out-dir public --presets=env,react --source-maps inline"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "body-parser": "^1.18.3",
