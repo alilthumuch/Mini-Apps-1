@@ -20,36 +20,50 @@ app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname + '/index.html'));
 })
 
-app.post('/form1', (req, res) => {
+app.post('/', (req, res) => {
+	console.log(req.body)
 	shopping.postAccountInfo(req.body.name, req.body.email, req.body.password, (err, data) => {
 		if(err) {
 			return res.status(500).send(err);
-		} else{
-			res.sendStatus(201)
+		} else {
+			shopping.postUserAddress(req.body.address1, req.body.address2, req.body.state, req.body.zip, req.body.name, (err, data) => {
+				if(err) {
+					return res.status(500).send(err);
+				} else {
+					shopping.postUserCreditCard(req.body.cardNumber, req.body.expiryDate, req.body.cvv, req.body.billingZip, req.body.name, (err, data) => {
+						if(err) {
+							return res.status(500).send(err);
+						} else {
+							return res.send(201);
+						}
+					})
+				}	
+			})				
 		}
 	})
+
 })
 
-app.post('/form2', (req, res) => {
-	shopping.postUserAddress(req.body.address1, req.body.address2, req.body.state, req.body.zip, req.body.userID, (err, data) => {
-		if(err) {
-			return res.status(500).send(err);
-		} else{
-			res.sendStatus(201)
-		}
-	})
+// app.post('/form2', (req, res) => {
+// 	shopping.postUserAddress(req.body.address1, req.body.address2, req.body.state, req.body.zip, req.body.userID, (err, data) => {
+// 		if(err) {
+// 			return res.status(500).send(err);
+// 		} else{
+// 			res.sendStatus(201)
+// 		}
+// 	})
 	
-})
+// })
 
-app.post('/form3', (req, res) => {
-	shopping.postUserAddress(req.body.address1, req.body.address2, req.body.state, req.body.zip, req.body.userID, (err, data) => {
-		if(err) {
-			return res.status(500).send(err);
-		} else{
-			res.sendStatus(201)
-		}
-	})
-})
+// app.post('/form3', (req, res) => {
+// 	shopping.postUserAddress(req.body.address1, req.body.address2, req.body.state, req.body.zip, req.body.userID, (err, data) => {
+// 		if(err) {
+// 			return res.status(500).send(err);
+// 		} else{
+// 			res.sendStatus(201)
+// 		}
+// 	})
+// })
 
 app.listen(3000, () => console.log("We're LIVE folks!"))
 
