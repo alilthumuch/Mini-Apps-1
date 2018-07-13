@@ -6,7 +6,7 @@ var Board = (props) => {
 	return (
 		<table className = "rowWrap">
 	   {props.board.map((rowID, index) => 
-	   	<BoardRow rowID = {index} board = {props.board[index]} handleMove = {props.handleMove}/>
+	   	<BoardRow rowID = {index} board = {props.board[index]} handleMove = {props.handleMove} color = {props.color}/>
 	   )}
 	   </table>
 	)

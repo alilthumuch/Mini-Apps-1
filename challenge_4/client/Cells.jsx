@@ -1,7 +1,7 @@
 
 var Cells = (props) => {
 	return (
-		<td className="row" id = {props.rowID + '' + props.colID} onClick = {props.handleMove}/>
+		<td className={props.color} id = {props.rowID + '' + props.colID} onClick = {props.handleMove}/>
 	)
 
 }
